@@ -1,0 +1,60 @@
+<div class="container mt-5 mb-5">
+    <div class="row">
+   
+            <div class="col-sm-9">
+              <span class="hidden-file">
+                <input type="file" #fileInput ng2FileSelect multiple [uploader]="uploader" />
+                <!-- (onFileSelected)="onFileSelected($event)"  -->
+              </span>
+            </div>
+
+
+
+
+         
+              
+                <input  #Name="ngModel" [(ngModel)]="name" type="text" class="form-control"   name="Name" 
+                  placeholder="name">
+           
+  
+        
+
+      <div class="col-md-9 mt-5">
+        <table class="table">
+          <!-- <thead>
+            <tr>
+              <th>Name</th>
+              <th>Size</th>
+              <th>Actions</th>
+            </tr>
+          </thead> -->
+          <tbody>
+            <tr *ngFor="let item of uploader.queue">
+              <td>
+                {{ item?.file?.name }}
+              </td>
+              <td>
+                {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+              </td>
+              <td>
+          
+         <button style="background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none" type="button"  (click)="item.remove()">
+           <span class="glyphicon glyphicon-trash"></span> 
+         <i color="red" class="fas fa-trash-alt fa-lg"></i>
+          </button>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <button (click)="onSubmit()" >ok</button>

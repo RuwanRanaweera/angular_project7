@@ -1,0 +1,110 @@
+<div class="container edit">
+
+        <div class="">
+          <br>
+          
+          
+          <div class="alert alert-success" *ngIf="showSucessMessage">
+            Saved successfully
+          </div>
+      
+          <form #prodUpForm="ngForm" (ngSubmit)="prodUpForm.valid &&  updateProduct(productName.value,dateTime.value,oriName.value,price.value,description.value,prodUpForm)">
+            
+            
+            <!-- <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Photos</span>
+              </div>
+              <div class="custom-file">
+      
+                <input type="file" class="custom-file-input" name="avatar" ng2FileSelect [uploader]="uploader" />
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+      
+            </div>    
+             <small *ngIf="!uploader.queue[0]"  id="emailHelp" class="form-text  text-warning">Maximum size of image is 2MB</small>
+      
+       -->
+      
+            <!-- <div class="col-md-8">
+      
+      
+      
+              <table class="table">
+      
+                <tbody>
+                  <tr *ngFor="let item of uploader.queue">
+                    <td><strong>{{ item.file.name }}</strong></td>
+      
+                    <td nowrap>{{ item.file.size/1024/1024 | number:'.2' }} MB</td>
+                    <td>
+                      <div class="progress" style="margin-bottom: 0;width: 100px;">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <span *ngIf="item.isSuccess"><i class="fa fa-check"></i></span>
+                      <span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
+                      <span *ngIf="item.isError"><i class="fa fa-times"></i></span>
+                    </td>
+                    <td nowrap>
+                      <button type="button" class="btn btn-danger btn-xs" (click)="item.remove()">
+                        <span class="fa fa-trash"></span> Remove
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+  
+            </div> -->
+      
+      
+            <div class="form-group">
+              <label for="exampleInputEmail1">Product Name</label>
+              <input type="text" class="form-control" #productName="ngModel" [(ngModel)]="userService.newProduct.productName"
+                name="productName" required [ngClass]="{'invalid-textbox' :prodUpForm.submitted && !productName.valid }"
+                placeholder="Enter Product Name">
+      
+              <div *ngIf="prodUpForm.submitted && !productName.valid">
+                <label class="validation-message">This field is required.</label>
+              </div>
+            </div>
+      
+      
+            <div >
+              <input type="text" #dateTime="ngModel" [(ngModel)]="userService.newProduct.dateTime" name="dateTime">
+              <input  type="text" #oriName="ngModel" [(ngModel)]="userService.newProduct.oriName" name="oriName">
+            </div>
+      
+      
+      
+      
+            <div class="form-group">
+              <label for="formGroupExampleInput">Price</label>
+              <input type="number" #price="ngModel" [(ngModel)]="userService.newProduct.price" name="price"
+                class="form-control" required [ngClass]="{'invalid-textbox' :prodUpForm.submitted && !price.valid }"
+                placeholder="Enter Product Price">
+              <div *ngIf="prodUpForm.submitted && !price.valid">
+                <label class="validation-message">This field is required.</label>
+              </div>
+            </div>
+      
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Description</label>
+              <textarea rows="3" type="text" class="form-control" #description="ngModel"
+                [(ngModel)]="userService.newProduct.description" name="description" required
+                [ngClass]="{'invalid-textbox' :prodUpForm.submitted && !description.valid }"></textarea>
+              <div *ngIf="prodUpForm.submitted && !description.valid">
+                <label class="validation-message">This field is required.</label>
+              </div>
+            </div>
+      
+      
+      
+            <button type="submit" class="btn btn-primary  ">Done</button>
+      
+          </form>
+        </div>      
+
+      
+ 
